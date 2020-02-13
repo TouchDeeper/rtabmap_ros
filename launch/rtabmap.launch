@@ -252,6 +252,9 @@
     <!-- Visual SLAM (robot side) -->
     <!-- args: "delete_db_on_start" and "udebug" -->
     <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="$(arg output)" args="$(arg rtabmap_args)" launch-prefix="$(arg launch_prefix)">
+      <param name="RGBD/OptimizeStrategy" type="string" value="1"/> <!-- g2o=1, GTSAM=2 -->
+      <param name="RGBD/OptimizeRobust" type="string" value="true"/>
+      <param name="RGBD/OptimizeMaxError" type="string" value="0"/> <!-- should be 0 if RGBD/OptimizeRobust is true -->
       <param     if="$(arg stereo)" name="subscribe_depth"  type="bool" value="false"/>
       <param unless="$(arg stereo)" name="subscribe_depth"  type="bool" value="true"/>
       <param name="subscribe_rgbd"       type="bool"   value="$(arg subscribe_rgbd)"/>
